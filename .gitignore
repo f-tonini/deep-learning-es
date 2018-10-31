@@ -1,0 +1,17 @@
+*pycache*
+.DS_Store
+Thumbs.db
+ehthumbs.db
+.idea/
+/test_images
+/training_images
+/bottleneck_data
+/Index
+/scripts
+/tensorboard_logs
+/model
+*.gdb
+*.csv
+*.aprx
+*.parq
+*.zip
