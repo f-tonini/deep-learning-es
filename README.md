@@ -1,6 +1,7 @@
 # Deep Learning: CNNs for Classification of Cultural Ecosystem Services
 
 <img src="img/arcgis-deep-learning.png" height="300">
+
 *figure credits: ESRI*
 
 This repository contains all the code, files, and documentation needed to run our Python deep learning toolbox for ArcGIS Pro --a GUI-based tool to extract user-uploaded photos from a 2005-2017 [Flickr](https://www.flickr.com/) database and predict density of nature-based photos using a trained [Convolutional Neural Network (CNN)](http://cs231n.github.io/convolutional-networks/) model with [TensorFlow](https://www.tensorflow.org/tutorials/images/image_recognition). The CNN used here is based off Google's own [Inception-v3](https://arxiv.org/abs/1512.00567) model. 
@@ -9,13 +10,13 @@ This repository contains all the code, files, and documentation needed to run ou
 
 The photo database used with our tool and packed into the [`flickrDB_small_mod.parq`](https://drive.google.com/file/d/1_tuEaSMwuJ8rA0anYt7slcOBOnXCcVrQ/view?usp=sharing) parquet file for efficient storing has been compiled by making use of the [Flickr API](https://www.flickr.com/services/api/) and selecting only photos for the USA lower 48 states going from 2005 up to 2017.
 
-<img src="img/us-flickr.png" height="300">
+<img src="img/us-flickr.png" height="500">
 
 **Disclaimer: All data dowloaded from Flickr and stored in a local database has been stripped of any type of user identifier and is therefore anonymous. Our algorithm only uses dates and geospatial locations specified by the user when uploading the photos.**
 
 ## Cultural Ecosystem Services:
 
-<img src="img/es-logo.png" height="300">
+<img src="img/es-logo.png" height="500">
 
 The [Ecosystem Services & Biodiversity (ESB)](http://www.fao.org/ecosystem-services-biodiversity/background/cultural-services/en/) definition of **cultural ecosystem services** says:
 
@@ -30,16 +31,20 @@ Our tool helps users understand which areas have the highest concentration of cu
 In order to make it easier for users to replicate our own Python development environment, we created a YML file (see *environment.yml*) to be used with [Conda](https://conda.io/docs/) and have all the necessary libraries. If you have ArcGIS Pro 2.2+ installed on your system, then Conda is already installed inside the ArcGIS local folder structure. Since the default conda environment used by ArcGIS Pro 2.2+ cannot be altered, you need to follow these steps to create a new environment off of our YML file and then set it up as the default ArcGIS Pro environment. Do not worry, you are not overriding the original environment, so you can always switch it back to the default one. Our environment is a clone of all the default ArcGIS Pro libraries, plus several more needed to run deep learning and image processing with our tool.
 
 1. Open the command line prompt and navigate to the following folder:
-
-    `cd C:\Program Files\ArcGIS\Pro\bin\Python\Scripts`
-
+    
+```
+cd C:\Program Files\ArcGIS\Pro\bin\Python\Scripts
+```
+    
 2. Type `activate` and press Enter. You now activated the default (root) conda environment.
 
 3. Create a new conda environment using our YML file with the following command:
+    
+<pre><code>
+conda env create -f <i>PATH_TO_YML_FILE</i>
+</code></pre>
 
-    `conda env create -f *<PATH_TO_YML_FILE>*`
-
-    where *<PATH_TO_YML_FILE>* corresponds to the location where you downloaded and unzipped (or cloned) this Github repository. **You need to point to the environment.yml file contained in our folder**.
+   where *PATH_TO_YML_FILE* corresponds to the location where you downloaded and unzipped (or cloned) this Github repository. **You need to point to the environment.yml file contained in our folder**.
 
 4. Follow the instructions and appear on the command line while the new environment is created and respond yes (y) anytime conda asks you to install new libraries.
 
@@ -47,11 +52,15 @@ In order to make it easier for users to replicate our own Python development env
 
 6. Type the following command and press Enter to activate an environment for the current and all future sessions of ArcGIS Pro and "Python Command Prompt"
 
-    `proswap %LocalAppData%\ESRI\conda\envs\deep-learning-arcgispro-py3`
+```
+proswap %LocalAppData%\ESRI\conda\envs\deep-learning-arcgispro-py3
+```
 
-    **NOTE: if you ever want to switch back to the default ArcGIS Pro 2.2+ environment, type:**
+   **NOTE: if you ever want to switch back to the default ArcGIS Pro 2.2+ environment, type:**
 
-    `proswap arcgispro-py3`
+```
+proswap arcgispro-py3
+```
 
 7. Download the [`flickrDB_small_mod.parq`](https://drive.google.com/file/d/1_tuEaSMwuJ8rA0anYt7slcOBOnXCcVrQ/view?usp=sharing) photo database file and make sure to store it inside the main unzipped folder (or cloned) for this repository. If you skip this step, the tool will not work!.
 
@@ -61,15 +70,15 @@ You are now all set to open ArcGIS Pro and add our Python toolbox to start using
 
 Add our Python Toolbox (.pyt) called **ComputerVisionES** to the Geoprocessing tools and double-click on it to find the *Cultural Ecosystem Services* script tool in it.
 
-<img src="img/gui-1.png" height="300">
+<img src="img/gui-1.png" height="500">
 
 Draw an area of interest over a basemap (make sure you are using geographic coordinate system for you ArcGIS Pro project) and fill out the mandatory parameters. Then click Run to execute the tool.
 
-<img src="img/gui-2.png" height="300">
+<img src="img/gui-2.png" height="500">
 
 Once the tool is done running (execution time may significantly vary based on your selected extent and parameter values) you should see the new gridded feature class in the table of content panel. Pick a symbology to represent the `joint_count` attribute and visualize the photo densities for each grid cell.
 
-<img src="img/gui-3.png" height="300">
+<img src="img/gui-3.png" height="500">
 
 ## Convolutional Neural Network
 
@@ -80,11 +89,13 @@ As stated in the introduction, we re-trained a [Convolutional Neural Network (CN
 The following shows a schematic representation of the CNN and the final output probability that comes out of the algorithm. The probability threshold parameter in our tool, controls above which probability value an image should be classified as **Nature**.
 
 <img src="img/neural-network.png" height="300">
+
 [*figure credits*](https://www.researchgate.net/figure/The-Millennium-Ecosystem-Assessment-MEA-organizes-ecosystem-services-into-four-broad_fig3_267623726) 
 
 ## Credits and Contacts
 
 Francesco Tonini: <ftonini84@gmail.com>
+
 Derek Van Berkel: <derekvanberkel@gmail.com>
 
 ## LICENSE
