@@ -8,7 +8,7 @@ This repository contains all the code, files, and documentation needed to run ou
 
 ## Flickr Photos Storage:
 
-The photo database used with our tool and packed into the [`flickrDB_small_mod.parq`](https://drive.google.com/file/d/1_tuEaSMwuJ8rA0anYt7slcOBOnXCcVrQ/view?usp=sharing) parquet file for efficient storing has been compiled by making use of the [Flickr API](https://www.flickr.com/services/api/) and selecting only photos for the USA lower 48 states going from 2005 up to 2017.
+The photo database used with our tool and packed into the [`flickrDB_small_mod.parq`](https://s3.amazonaws.com/dl-es/flickrDB_small_mod.parq) parquet file for efficient storing has been compiled by making use of the [Flickr API](https://www.flickr.com/services/api/) and selecting only photos for the USA lower 48 states going from 2005 up to 2017.
 
 <img src="img/us-flickr.png" height="500">
 
@@ -62,7 +62,7 @@ proswap %LocalAppData%\ESRI\conda\envs\deep-learning-arcgispro-py3
 proswap arcgispro-py3
 ```
 
-7. Download the [`flickrDB_small_mod.parq`](https://drive.google.com/file/d/1_tuEaSMwuJ8rA0anYt7slcOBOnXCcVrQ/view?usp=sharing) photo database file and make sure to store it inside the main unzipped folder (or cloned) for this repository. If you skip this step, the tool will not work!.
+7. Download the [`flickrDB_small_mod.parq`](https://s3.amazonaws.com/dl-es/flickrDB_small_mod.parq) photo database file and make sure to store it inside the main unzipped folder (or cloned) for this repository. If you skip this step, the tool will not work!.
 
 You are now all set to open ArcGIS Pro and add our Python toolbox to start using it!! If you encounter any errors or get stuck during the previous steps, please reach out to us via email for technical help or open a new Github issue directly in this repository.
 
